@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS GAMING - Top Up Game & Voucher Termurah</title>
+    <!-- Google Fonts untuk Tampilan Gaming -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* === CSS RESET & VARIABEL TEMA GAMING === */
+        :root {
+            --bg-dark: #0b0e14;
+            --bg-card: #151a23;
+            --bg-input: #1f2633;
+            --accent-cyan: #00f2fe;
+            --accent-purple: #7928ca;
+            --text-main: #f0f4f8;
+            --text-muted: #94a3b8;
+            --wa-green: #25d366;
+            --radius: 12px;
+            --glow: 0 0 15px rgba(0, 242, 254, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* === NAVBAR === */
+        .navbar {
+            background-color: rgba(11, 14, 20, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 242, 254, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            color: var(--accent-cyan);
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+            transition: 0.3s;
+        }
+
+        /* === HERO BANNER === */
+        .hero {
+            background: linear-gradient(180deg, rgba(121, 40, 202, 0.2) 0%, rgba(11, 14, 20, 1) 100%),
+                        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=1200') center/cover no-repeat;
+            padding: 80px 20px 60px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 25px;
+        }
+
+        /* === PROFIL TOKO === */
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-left: 4px solid var(--accent-cyan);
+            padding-left: 12px;
+        }
+
+        .store-info {
+            background-color: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 30px;
+            margin: 40px 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .info-box h3 {
+            color: var(--accent-cyan);
+            margin-bottom: 10px;
+        }
+
+        .info-box p, .info-box ul {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .info-box ul {
+            list-style: none;
+        }
+
+        .info-box li {
+            margin-bottom: 8px;
+        }
+
+        /* === KATALOG GAME === */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .game-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-cyan);
+            box-shadow: var(--glow);
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .game-card-body {
+            padding: 15px;
+        }
+
+        .game-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .game-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        /* === FORM TOP UP === */
+        .order-section {
+            background-color: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 30px;
+            margin-bottom: 60px;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: var(--bg-input);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--accent-cyan);
+        }
+
+        .btn-wa {
+            display: inline-block;
+            width: 100%;
+            background-color: var(--wa-green);
+            color: #fff;
+            text-align: center;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .btn-wa:hover {
+            background-color: #1ebd59;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-card-wa {
+            display: block;
+            text-align: center;
+            background-color: rgba(0, 242, 254, 0.1);
+            color: var(--accent-cyan);
+            border: 1px solid var(--accent-cyan);
+            padding: 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-card-wa:hover {
+            background-color: var(--accent-cyan);
+            color: var(--bg-dark);
+        }
+
+        /* === FOOTER === */
+        footer {
+            background-color: #06080c;
+            text-align: center;
+            padding: 25px 0;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8rem; }
+            .nav-links { gap: 12px; font-size: 0.95rem; }
+            .order-section, .store-info { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">⚡ NEXUS STORE</a>
+            <ul class="nav-links">
+                <li><a href="#profil">Profil</a></li>
+                <li><a href="#game">Game</a></li>
+                <li><a href="#topup">Form Top Up</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO BANNER -->
+    <header class="hero">
+        <div class="container">
+            <h1>TOP UP GAME MURAH, CEPAT & AMAN</h1>
+            <p>Layanan top up Diamond, UC, VP, dan Voucher Game terpercaya dengan proses otomatis via WhatsApp 24 Jam.</p>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- PROFIL TOKO -->
+        <section id="profil">
+            <div class="store-info">
+                <div class="info-box">
+                    <h3>Tentang Nexus Store</h3>
+                    <p>Nexus Store adalah penyedia layanan top up game online terlengkap di Indonesia. Kami menyediakan berbagai pilihan nominal Diamond/In-Game Currency dengan harga bersaing dan garansi 100% legal.</p>
+                </div>
+                <div class="info-box">
+                    <h3>Informasi & Jam Operasional</h3>
+                    <ul>
+                        <li>📍 <strong>Lokasi:</strong> Ruko Gamer Center, Lt. 2, Magelang, Jawa Tengah</li>
+                        <li>⏰ <strong>Jam Kerja:</strong> Setiap Hari (08.00 - 23.00 WIB)</li>
+                        <li>⚡ <strong>Proses:</strong> 1 - 5 Menit Otomatis</li>
+                        <li>💳 <strong>Metode Pembayaran:</strong> QRIS, DANA, GoPay, OVO, Transfer Bank</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- KATALOG GAME -->
+        <section id="game">
+            <h2 class="section-title">Pilihan Game Populer</h2>
+            <div class="game-grid">
+
+                <div class="game-card" onclick="selectGameFromCard('Mobile Legends')">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=500" alt="Mobile Legends">
+                    <div class="game-card-body">
+                        <h3>Mobile Legends</h3>
+                        <p>Pilihan: 86 - 4000+ Diamonds & Weekly Pass</p>
+                        <a href="#topup" class="btn-card-wa">Pilih Nominal DM</a>
+                    </div>
+                </div>
+
+                <div class="game-card" onclick="selectGameFromCard('Free Fire')">
+                    <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=500" alt="Free Fire">
+                    <div class="game-card-body">
+                        <h3>Free Fire</h3>
+                        <p>Pilihan: 70 - 2180+ Diamonds & Membership</p>
+                        <a href="#topup" class="btn-card-wa">Pilih Nominal DM</a>
+                    </div>
+                </div>
+
+                <div class="game-card" onclick="selectGameFromCard('PUBG Mobile')">
+                    <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&q=80&w=500" alt="PUBG Mobile">
+                    <div class="game-card-body">
+                        <h3>PUBG Mobile</h3>
+                        <p>Pilihan: 60 - 1800+ Unknown Cash (UC)</p>
+                        <a href="#topup" class="btn-card-wa">Pilih Nominal UC</a>
+                    </div>
+                </div>
+
+                <div class="game-card" onclick="selectGameFromCard('Valorant')">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=500" alt="Valorant">
+                    <div class="game-card-body">
+                        <h3>Valorant</h3>
+                        <p>Pilihan: 475 - 7000+ Valorant Points (VP)</p>
+                        <a href="#topup" class="btn-card-wa">Pilih Nominal VP</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FORM TOP UP INTERAKTIF -->
+        <section id="topup">
+            <h2 class="section-title">Form Pemesanan Top Up</h2>
+            <div class="order-section">
+                <form id="topupForm">
+                    
+                    <!-- 1. PILIH GAME -->
+                    <div class="form-group">
+                        <label for="gameSelect">1. Pilih Game</label>
+                        <select id="gameSelect" onchange="updateNominalOptions()" required>
+                            <option value="">-- Pilih Game Terlebih Dahulu --</option>
+                            <option value="Mobile Legends">Mobile Legends (MLBB)</option>
+                            <option value="Free Fire">Free Fire (FF)</option>
+                            <option value="PUBG Mobile">PUBG Mobile</option>
+                            <option value="Valorant">Valorant</option>
+                        </select>
+                    </div>
+
+                    <!-- 2. USER ID -->
+                    <div class="form-group">
+                        <label for="userId">2. User ID & Zone ID / Server Tag</label>
+                        <input type="text" id="userId" placeholder="Contoh: 12345678 (1234)" required>
+                    </div>
+
+                    <!-- 3. PILIH NOMINAL DM / ITEM (DINAMIS SESUAI GAME) -->
+                    <div class="form-group">
+                        <label for="itemSelect">3. Pilih Nominal Top Up (DM / UC / VP)</label>
+                        <select id="itemSelect" required disabled>
+                            <option value="">-- Silakan Pilih Game Terlebih Dahulu --</option>
+                        </select>
+                    </div>
+
+                    <!-- 4. PILIH METODE PEMBAYARAN -->
+                    <div class="form-group">
+                        <label for="paymentMethod">4. Pilih Metode Pembayaran</label>
+                        <select id="paymentMethod" required>
+                            <option value="QRIS (All E-Wallet / Bank)">QRIS (All Payment / E-Wallet)</option>
+                            <option value="DANA / GoPay / OVO">DANA / GoPay / OVO</option>
+                            <option value="Transfer Bank (BCA / BRI / Mandiri)">Transfer Bank (BCA / BRI / Mandiri)</option>
+                        </select>
+                    </div>
+
+                    <!-- TOMBOL KIRIM WA -->
+                    <button type="button" class="btn-wa" onclick="sendToWhatsapp()">📲 KIRIM PESANAN VIA WHATSAPP</button>
+                </form>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Nexus Store. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT JAVASCRIPT UNTUK PILIHAN NOMINAL DINAMIS -->
+    <script>
+        // Data Pilihan Nominal/Diamond per Game
+        const gameItems = {
+            "Mobile Legends": [
+                { text: "Weekly Diamond Pass - Rp 28.000", value: "Weekly Diamond Pass (Rp 28.000)" },
+                { text: "86 Diamonds - Rp 20.000", value: "86 Diamonds (Rp 20.000)" },
+                { text: "172 Diamonds - Rp 40.000", value: "172 Diamonds (Rp 40.000)" },
+                { text: "257 Diamonds - Rp 60.000", value: "257 Diamonds (Rp 60.000)" },
+                { text: "706 Diamonds - Rp 160.000", value: "706 Diamonds (Rp 160.000)" },
+                { text: "2195 Diamonds - Rp 480.000", value: "2195 Diamonds (Rp 480.000)" }
+            ],
+            "Free Fire": [
+                { text: "Membership Mingguan - Rp 30.000", value: "Membership Mingguan FF (Rp 30.000)" },
+                { text: "70 Diamonds - Rp 10.000", value: "70 Diamonds FF (Rp 10.000)" },
+                { text: "140 Diamonds - Rp 20.000", value: "140 Diamonds FF (Rp 20.000)" },
+                { text: "355 Diamonds - Rp 50.000", value: "355 Diamonds FF (Rp 50.000)" },
+                { text: "720 Diamonds - Rp 100.000", value: "720 Diamonds FF (Rp 100.000)" },
+                { text: "2180 Diamonds - Rp 300.000", value: "2180 Diamonds FF (Rp 300.000)" }
+            ],
+            "PUBG Mobile": [
+                { text: "60 UC - Rp 15.000", value: "60 UC PUBG (Rp 15.000)" },
+                { text: "325 UC - Rp 75.000", value: "325 UC PUBG (Rp 75.000)" },
+                { text: "660 UC - Rp 145.000", value: "660 UC PUBG (Rp 145.000)" },
+                { text: "1800 UC - Rp 380.000", value: "1800 UC PUBG (Rp 380.000)" }
+            ],
+            "Valorant": [
+                { text: "475 VP - Rp 55.000", value: "475 VP Valorant (Rp 55.000)" },
+                { text: "1000 VP - Rp 110.000", value: "1000 VP Valorant (Rp 110.000)" },
+                { text: "2050 VP - Rp 220.000", value: "2050 VP Valorant (Rp 220.000)" },
+                { text: "3650 VP - Rp 380.000", value: "3650 VP Valorant (Rp 380.000)" }
+            ]
+        };
+
+        // Fungsi Update Pilihan Dropdown Nominal saat Game Dipilih
+        function updateNominalOptions() {
+            const gameSelect = document.getElementById("gameSelect");
+            const itemSelect = document.getElementById("itemSelect");
+            const selectedGame = gameSelect.value;
+
+            itemSelect.innerHTML = '<option value="">-- Pilih Nominal / Paket --</option>';
+
+            if (selectedGame && gameItems[selectedGame]) {
+                itemSelect.disabled = false;
+                gameItems[selectedGame].forEach(item => {
+                    const option = document.createElement("option");
+                    option.value = item.value;
+                    option.textContent = item.text;
+                    itemSelect.appendChild(option);
+                });
+            } else {
+                itemSelect.disabled = true;
+                itemSelect.innerHTML = '<option value="">-- Silakan Pilih Game Terlebih Dahulu --</option>';
+            }
+        }
+
+        // Fungsi Pilih Game Otomatis Saat Klik Kartu Game
+        function selectGameFromCard(gameName) {
+            const gameSelect = document.getElementById("gameSelect");
+            gameSelect.value = gameName;
+            updateNominalOptions();
+        }
+
+        // Fungsi Redirect Kirim Pesanan Ke WhatsApp
+        function sendToWhatsapp() {
+            // Masukkan nomor WhatsApp toko kamu di sini (Ganti 6281234567890 dengan nomor aktifmu)
+            const nomorAdmin = "6281234567890";
+
+            const game = document.getElementById('gameSelect').value;
+            const userId = document.getElementById('userId').value;
+            const item = document.getElementById('itemSelect').value;
+            const payment = document.getElementById('paymentMethod').value;
+
+            if (!game || !userId || !item) {
+                alert("Harap lengkapi pilihan Game, User ID, dan Nominal Top Up terlebih dahulu!");
+                return;
+            }
+
+            const message = `Halo Nexus Store, saya ingin melakukan Top Up Game:\n\n` +
+                            `🎮 *Game:* ${game}\n` +
+                            `🆔 *User ID/Zone:* ${userId}\n` +
+                            `💎 *Nominal/Paket:* ${item}\n` +
+                            `💳 *Pembayaran:* ${payment}\n\n` +
+                            `Mohon segera diproses, terima kasih!`;
+
+            const whatsappURL = `https://wa.me/${nomorAdmin}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+</body>
+</html>
